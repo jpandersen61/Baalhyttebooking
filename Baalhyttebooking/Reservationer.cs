@@ -27,6 +27,8 @@ namespace Baalhyttebooking
 
         public void RegisterReservation(Reservation reservation)
         {
+            ReservationOK(reservation);
+
             if (!_reservationer.ContainsKey(reservation.ID))
             {
                 _reservationer.Add(reservation.ID, reservation);

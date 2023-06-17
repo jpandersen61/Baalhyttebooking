@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Opgave 1:");
             
             //Opgave 1
@@ -22,7 +23,7 @@
             Reservation reservation1 = new Reservation(1, new DateTime(2023,7,20,14,0,0),bg1);
             Reservation reservation2 = new Reservation(2, new DateTime(2023,7,27,16,0,0),bg1);
             Reservation reservation3 = new Reservation(3, new DateTime(2023,7,13,12,0,0),bg2);
-            Reservation reservation4 = new Reservation(4, new DateTime(2023,7,6,1,0,0),bg2);
+            Reservation reservation4 = new Reservation(4, new DateTime(2023,7,6,18,0,0),bg2);
             Console.WriteLine(reservation1);
             Console.WriteLine(reservation2);
             Console.WriteLine(reservation3);
@@ -80,12 +81,17 @@
 
 
             Console.WriteLine("Opgave 9:");
+
+            Reservation testReservation1 = new Reservation(5, new DateTime(2023, 7, 20, 16, 0, 0), null);
+            Reservation testReservation2 = new Reservation(5, new DateTime(2023, 7, 20, 16, 0, 0), bg1);
+            Reservation testReservation3 = new Reservation(5, new DateTime(2023, 7, 20, 16, 0, 0), bg1);
+
             Console.WriteLine("Tester ReservationOK");
 
             try
             {
                 Console.WriteLine("Intet Boernegruppe object tilknyttet");
-                resListe.ReservationOK(new Reservation(5, new DateTime(2023, 7, 20, 16, 0, 0), null));
+                resListe.ReservationOK(testReservation1);
             }
             catch (Exception e)
             {
@@ -95,7 +101,7 @@
             try
             {
                 Console.WriteLine("Max. antal reservationer overskrides");
-                resListe.ReservationOK(new Reservation(5, new DateTime(2023, 7, 20, 16, 0, 0), bg1));
+                resListe.ReservationOK(testReservation2);
             }
             catch (Exception e)
             {
@@ -105,12 +111,47 @@
             try
             {
                 Console.WriteLine("Reservation er IKKE ledig");
-                resListe.ReservationOK(new Reservation(5, new DateTime(2023, 7, 20, 16, 0, 0), bg1));
+                resListe.ReservationOK(testReservation3);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Tester RegisterReservation");
+
+            try
+            {
+                Console.WriteLine("Intet Boernegruppe object tilknyttet");
+                resListe.RegisterReservation(testReservation1);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
+                Console.WriteLine("Max. antal reservationer overskrides");
+                resListe.RegisterReservation(testReservation2);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
+                Console.WriteLine("Reservation er IKKE ledig");
+                resListe.RegisterReservation(testReservation3);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
         }
     }
 }
